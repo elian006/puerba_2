@@ -6,7 +6,8 @@ module.exports = {
   makers: [
     {
       name: '@electron-forge/maker-squirrel',
-      config: {},
+      config: {certificateFile: './cert.pfx',
+      certificatePassword: process.env.CERTIFICATE_PASSWORD},
     },
     {
       name: '@electron-forge/maker-zip',
@@ -27,4 +28,19 @@ module.exports = {
       config: {},
     },
   ],
+  publishers: [
+    {
+      name: '@electron-forge/publisher-github',
+      config: {
+        repository: {
+          owner: 'elian006',
+          name: 'puerba_2'
+        },
+        prerelease: false,
+        draft: true
+      }
+    }
+  ]
+
+
 };
