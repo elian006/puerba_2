@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Electron GitHub Updater</title>
+</head>
+
+<body>
+  <h1>Electron GitHub Updater</h1>
+
+  <div id="message">Sin actualizaciones</div>
+
+  <script>
+    const { ipcRenderer } = require('electron');
+
+    ipcRenderer.on('update_available', () => {
+      document.getElementById('message').innerText = 'Actualización disponible. Descargando...';
+    });
+
+    ipcRenderer.on('update_downloaded', () => {
+      document.getElementById('message').innerText = 'Actualización descargada. Reinicia la aplicación para aplicar los cambios.';
+    });
+
+    ipcRenderer.on('no_updates_available', () => {
+      document.getElementById('message').innerText = 'No hay actualizaciones disponibles.';
+    });
+  </script>
+</body>
+
+</html>
